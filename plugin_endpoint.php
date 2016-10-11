@@ -91,7 +91,7 @@ try {
 			
 			// If this isn't a folder...
 			if ($stat['crc'] !== 0) {
-				if (!preg_match('/(\.jpg$|\.jpeg$|\.png$|\.html$|\.doc$|\.docx$|\.pdf$|\.xls$|\.xlsx$|\.csv$)/', $name)) {
+				if (!preg_match('/(\.jpg$|\.jpeg$|\.png$|\.html$|\.doc$|\.docx$|\.pdf$|\.xls$|\.xlsx$|\.csv$|\.DS_Store$|\._fileName$)/', $name)) {
 					throw new RuntimeException('Error: Not a valid BEE free email archive.');
 				}
 				// If this is the main .html file, grab its name for later
