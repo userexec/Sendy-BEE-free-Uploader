@@ -95,7 +95,7 @@ try {
 					throw new RuntimeException('Error: Not a valid BEE free email archive.');
 				}
 				// If this is the main .html file, grab its name for later
-				if (preg_match('/(\.html$)/', basename( $stat['name'] ))) {
+				if (preg_match('/^[^_.].*\.html$/', basename( $stat['name'] ))) {
 					$htmlDoc = basename( $stat['name'] );
 				}
 			}
