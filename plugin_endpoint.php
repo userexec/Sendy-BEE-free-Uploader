@@ -17,6 +17,10 @@ $uploadPath = '/local/sendy/htdocs/sendyuploadfolder/';
 // (e.g. http://sendy.mst.edu/uploads/, or https://email-p1.srv.sample.com/sendy/uploads/)
 $visiblePath = 'http://yoursendyserver.com/uploads/';
 
+// The maximum allowable upload size (increase if you routinely send emails with
+// huge graphics)
+$maxUploadSizeMB = 2.5;
+
 // That's it! User configuration done. Stop editing.
 
 /*****************************************************************************/
@@ -55,8 +59,8 @@ try {
 	}
 
 	// Verify filesize isn't gigantic
-	if ($_FILES['upfile']['size'] > 2500000) {
-		throw new RuntimeException('Error: Exceeded filesize limit (2.5MB).');
+	if ($_FILES['upfile']['size'] > $maxUploadSizeMB * 100000) {
+		throw new RuntimeException('Error: Exceeded filesize limit (' . $maxUploadSizeMB . 'MB).');
 	}
 
 	// DO NOT TRUST $_FILES['upfile']['mime'] VALUE !!
