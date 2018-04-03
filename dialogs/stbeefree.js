@@ -53,7 +53,21 @@ CKEDITOR.dialog.add( 'stbeefreeDialog', function( editor ) {
 						CKEDITOR.instances.html.execCommand( 'stbeefree' );
 						return false;
 					} else {
-						$(CKEDITOR.instances.html.document.$).find('body').html(data);
+						var head = /<head.*?>([\s\S]*)<\/head>/;
+						var body = /<body.*?>([\s\S]*)<\/body>/;
+						var bodyStyles = /<body.*?style="(.*?)">/;
+						var bodyClasses = /<body.*?class="(.*?)".*?>/;
+
+						if (!data.match(head) || !data.match(body)) { 
+							$('#beeuploadmessage').html('malformed HTML; cannot locate head or body contents');
+							CKEDITOR.instances.html.execCommand( 'stbeefree' );
+							return false;
+						} 
+
+						$(CKEDITOR.instances.html.document.$).find('head').html(data.match(head)[1]);
+						$(CKEDITOR.instances.html.document.$).find('body').html(data.match(body)[1]);
+						if (!!data.match(bodyStyles)) $(CKEDITOR.instances.html.document.$).find('body').attr('style', data.match(bodyStyles)[1]);
+						if (!!data.match(bodyClasses)) $(CKEDITOR.instances.html.document.$).find('body').addClass(data.match(bodyClasses)[1]);
 						$('#beeuploadmessage').html('');
 					}
 
