@@ -59,7 +59,7 @@ try {
 	}
 
 	// Verify filesize isn't gigantic
-	if ($_FILES['upfile']['size'] > $maxUploadSizeMB * 100000) {
+	if ($_FILES['upfile']['size'] > $maxUploadSizeMB * 1000000) {
 		throw new RuntimeException('Error: Exceeded filesize limit (' . $maxUploadSizeMB . 'MB).');
 	}
 
