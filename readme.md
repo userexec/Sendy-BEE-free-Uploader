@@ -1,3 +1,7 @@
+**This project is no longer maintained and will not function with newer versions of Sendy.**
+
+This repo is for archival purposes only. Newer forks of this project may function on newer versions of Sendy.
+
 # Sendy BEE free Uploader
 
 Create your emails in BEE free, upload them directly into your Sendy editor.
